@@ -1,0 +1,214 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const links = [
+  {
+    source: {
+      author: 'Andrej Karpathy (@karpathy)',
+      preview: "I've never felt this much behind as a programmer. The profession is being dramatically...",
+      site: 'x.com',
+      image: 'https://via.placeholder.com/80/4a7298/fff?text=AK',
+    },
+    content: [
+      '程序员这个职业正在经历一场「9级大地震」式的暴力重构。',
+      '曾经我们引以为傲的代码贡献正变得稀疏，取而代之的是一个全新的、庞大的抽象层：Agent、Prompt、Context、MCP、各种工具链。',
+      '我们需要在传统的工程思维之上，去构建一套全新的心智模型，去驾驭这些充满随机性、甚至不可解释的 AI 模型。',
+    ],
+    time: 'about 14 hours ago',
+  },
+  {
+    source: {
+      author: '北火 (@beihuo)',
+      preview: 'http://x.com/i/article/2003726916935909378',
+      site: 'x.com',
+      image: 'https://via.placeholder.com/80/e74c3c/fff?text=北',
+    },
+    content: [
+      '本文通过神经科学家 Antonio Damasio 对患者 Elliot 的研究案例，深刻剖析了人工智能（AI）在 Context（上下文）管理中面临的本质困境。Elliot 因脑部手术导致前额叶受损，虽然智力、记忆和逻辑无损，但因失去了将情绪与决策连接的能力，陷入了"分析瘫痪"——在面对无限细节时无法筛选出重要信息，导致无法做决策。作者指出，**约束（Constraint）并非决策的障碍，而是决策的前提**；人类的情绪系统本质上是一种高效的筛选机制（偏见）。',
+      '文章将这一神经科学原理映射到 AI 领域：AI Agent 的 Context Window（上下文窗口）虽然在不断扩大，但面临着与 Elliot 同样的结构性问题——有限的处理能力面对无限的信息。文中详细探讨了 AI 应对此问题的"Context Engineering"技术，包括 Skills（能力内化）与 SubAgents（能力外包）的架构区别、MCP 与 A2A 等通信协议的作用、以及上下文压缩（截断或摘要）带来的信息损耗风险。同时，作者强调了往往被忽视的经济成本（计算量与延迟）也是重要的硬约束。',
+      '最后，文章对比了人类记忆机制（渐进遗忘、情绪标记、重建式记忆）与 AI 记忆机制（二元存取、位置导向、文件检索）的差异。作者提出警告：随着技术发展，Context 容量可能不再是瓶颈，但如果没有建立一套类似于人类情绪的"内生重要性判断机制"，AI 将拥有无限的上下文却无法区分轻重，最终陷入像 Elliot 一样的绝对理性却无法行动的困境。因此，未来的核心挑战在于如何赋予系统判断"什么重要、什么可忽略"的能力。',
+      'PS: 这篇文章提到的问题，其实已经有<a href="#">解决方案</a>了。',
+    ],
+    time: '2 days ago',
+    hasMore: true,
+  },
+];
+---
+
+<Layout title="链接 - Limboy">
+  <div class="links-page">
+    {links.map((link) => (
+      <article class="link-card">
+        <!-- 引用来源 -->
+        <div class="source-block">
+          <div class="source-info">
+            <p class="source-author">{link.source.author}</p>
+            <p class="source-preview">{link.source.preview}</p>
+            <p class="source-site">{link.source.site}</p>
+          </div>
+          <div class="source-image">
+            <img src={link.source.image} alt="" />
+          </div>
+        </div>
+
+        <!-- 内容 -->
+        <div class="link-content">
+          {link.content.map((para) => (
+            <p set:html={para}></p>
+          ))}
+        </div>
+
+        <!-- 查看更多 -->
+        {link.hasMore && (
+          <button class="show-more-btn">查看更多</button>
+        )}
+
+        <!-- 底部操作 -->
+        <div class="link-footer">
+          <div class="link-actions">
+            <button class="action-btn">♡</button>
+            <button class="action-btn">💬</button>
+          </div>
+          <span class="link-time">{link.time}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .links-page {
+    padding-bottom: 60px;
+  }
+
+  .link-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* 引用来源块 */
+  .source-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .source-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .source-author {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .source-preview {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .source-site {
+    color: #999;
+    font-size: 0.85rem;
+  }
+
+  .source-image {
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+
+  .source-image img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  /* 内容 */
+  .link-content {
+    margin-bottom: 16px;
+  }
+
+  .link-content p {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .link-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .link-content a {
+    color: #4a7298;
+    text-decoration: none;
+  }
+
+  .link-content a:hover {
+    text-decoration: underline;
+  }
+
+  /* 查看更多按钮 */
+  .show-more-btn {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    background: #fff;
+    color: #666;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+  }
+
+  .show-more-btn:hover {
+    border-color: #999;
+    color: #333;
+  }
+
+  /* 底部 */
+  .link-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+  }
+
+  .link-actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  .action-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .action-btn:hover {
+    opacity: 1;
+  }
+
+  .link-time {
+    color: #999;
+    font-size: 0.85rem;
+  }
+</style>
