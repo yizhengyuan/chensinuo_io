@@ -1,0 +1,282 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const categories = ['Songs', 'Piano', 'Jazz'];
+
+const songs = [
+  { title: 'Sugar Man', artist: 'Rodríguez', cover: 'https://via.placeholder.com/60/333/fff?text=♪' },
+  { title: 'I Wonder', artist: 'Rodríguez', cover: '' },
+  { title: 'I Think Of You', artist: 'Rodríguez', cover: '' },
+  { title: 'Crucify Your Mind', artist: 'Rodríguez', cover: '' },
+  { title: "Can't Get Away", artist: 'Rodríguez', cover: '' },
+  { title: '粤語殘片', artist: 'Eason Chan', cover: '' },
+  { title: '山脚', artist: 'Jony J', cover: '' },
+  { title: '鸽子', artist: '宋冬野', cover: '' },
+  { title: '斑马，斑马', artist: '宋冬野', cover: '' },
+  { title: '六层楼', artist: '宋冬野', cover: '' },
+];
+---
+
+<Layout title="音乐 - Limboy">
+  <div class="music-page">
+    <!-- 分类标签 -->
+    <div class="categories">
+      {categories.map((cat, index) => (
+        <button class:list={['category-btn', { active: index === 0 }]}>{cat}</button>
+      ))}
+    </div>
+
+    <!-- 播放器 -->
+    <div class="player">
+      <div class="player-info">
+        <div class="album-cover">
+          <span class="cover-placeholder">♪</span>
+        </div>
+        <div class="song-info">
+          <h2 class="current-title">Sugar Man</h2>
+          <p class="current-artist">Rodríguez</p>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <span class="time-current">00:00</span>
+        <div class="progress-track">
+          <div class="progress-fill"></div>
+        </div>
+        <span class="time-total">03:51</span>
+      </div>
+
+      <div class="controls">
+        <div class="controls-left">
+          <button class="control-btn" title="上一首">⏮</button>
+          <button class="control-btn play-btn" title="播放">▶</button>
+          <button class="control-btn" title="下一首">⏭</button>
+        </div>
+        <div class="controls-right">
+          <button class="control-btn" title="链接">🔗</button>
+          <button class="control-btn" title="随机">🔀</button>
+          <button class="control-btn" title="循环">🔁</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 歌曲列表 -->
+    <ul class="song-list">
+      {songs.map((song, index) => (
+        <li class:list={['song-item', { active: index === 0 }]}>
+          <span class="song-title">{song.title}</span>
+          <span class="song-artist">{song.artist}</span>
+        </li>
+      ))}
+    </ul>
+
+    <!-- 底部 -->
+    <footer class="music-footer">
+      <p class="quote">Be curious. Read widely. Try new things. -- Aaron Swartz</p>
+      <a href="#" class="email-link">Click to reveal email</a>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  .music-page {
+    padding-bottom: 60px;
+  }
+
+  /* 分类标签 */
+  .categories {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .category-btn {
+    padding: 8px 20px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: #fff;
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .category-btn:hover {
+    border-color: #999;
+  }
+
+  .category-btn.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+  }
+
+  /* 播放器 */
+  .player {
+    background: #fff;
+    padding: 24px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .player-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .album-cover {
+    width: 60px;
+    height: 60px;
+    background: #333;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cover-placeholder {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  .song-info {
+    flex: 1;
+  }
+
+  .current-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .current-artist {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* 进度条 */
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .time-current,
+  .time-total {
+    font-size: 0.8rem;
+    color: #999;
+    font-family: ui-monospace, monospace;
+    min-width: 40px;
+  }
+
+  .time-total {
+    text-align: right;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #333;
+    border-radius: 2px;
+  }
+
+  /* 控制按钮 */
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .controls-left,
+  .controls-right {
+    display: flex;
+    gap: 16px;
+  }
+
+  .control-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    color: #333;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .control-btn:hover {
+    opacity: 1;
+  }
+
+  .play-btn {
+    font-size: 1.5rem;
+  }
+
+  /* 歌曲列表 */
+  .song-list {
+    list-style: none;
+  }
+
+  .song-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .song-item:hover {
+    background: #fafafa;
+  }
+
+  .song-item.active {
+    background: #f5f5f5;
+  }
+
+  .song-title {
+    color: #333;
+    font-size: 0.95rem;
+  }
+
+  .song-artist {
+    color: #999;
+    font-size: 0.9rem;
+  }
+
+  /* 底部 */
+  .music-footer {
+    margin-top: 60px;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .quote {
+    color: #4a7298;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .email-link {
+    color: #4a7298;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .email-link:hover {
+    text-decoration: underline;
+  }
+</style>
