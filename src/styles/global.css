@@ -1,0 +1,204 @@
+/* 全局样式 - 复刻 limboy.me 风格 */
+
+:root {
+  --bg-color: #fff;
+  --text-color: #333;
+  --text-secondary: #666;
+  --text-muted: #999;
+  --link-color: #4a7298;
+  --card-bg: #f7f7f7;
+  --border-color: #eee;
+  --max-width: 960px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: var(--card-bg);
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+/* 区块标题 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.section-more {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.section-more:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* 文章列表样式 */
+.article-list {
+  list-style: none;
+}
+
+.article-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  gap: 16px;
+}
+
+.article-title {
+  flex-shrink: 0;
+  color: var(--text-color);
+}
+
+.article-title:hover {
+  color: var(--link-color);
+}
+
+.article-line {
+  flex-grow: 1;
+  border-bottom: 1px dashed #ddd;
+  min-width: 20px;
+}
+
+.article-date {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+/* 双栏布局 */
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 评论样式 */
+.comment-item {
+  margin-bottom: 16px;
+}
+
+.comment-item:last-child {
+  margin-bottom: 0;
+}
+
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.comment-author {
+  font-weight: 500;
+  color: var(--link-color);
+}
+
+.comment-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.comment-content {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 项目列表 */
+.project-list {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.project-item {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.project-item a {
+  color: var(--link-color);
+}
+
+/* 日常卡片 */
+.daily-card {
+  background-color: var(--card-bg);
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.daily-content {
+  color: var(--text-color);
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.daily-time {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.daily-quote {
+  border-left: 3px solid #ddd;
+  padding-left: 16px;
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}

@@ -1,0 +1,85 @@
+---
+const navItems = [
+  { label: '文章', href: '/posts' },
+  { label: '音乐', href: '/music' },
+  { label: '文档', href: '/docs' },
+  { label: '链接', href: '/links' },
+  { label: '摘录', href: '/quotes' },
+  { label: '读书', href: '/books' },
+  { label: '影视', href: '/movies' },
+  { label: '日常', href: '/daily' },
+];
+---
+
+<header class="header">
+  <div class="header-container">
+    <a href="/" class="logo">
+      <span class="logo-text">L</span>
+    </a>
+    <nav class="nav">
+      {navItems.map((item) => (
+        <a href={item.href} class="nav-link">{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    padding: 24px 0;
+    margin-bottom: 24px;
+  }
+
+  .header-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #333;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  .nav-link {
+    color: #333;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: #4a7298;
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-size: 0.85rem;
+    }
+  }
+</style>

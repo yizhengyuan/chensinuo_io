@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// 示例数据
+const comments = [
+  { author: 'limboy', time: '8 days ago', content: '嗯，合理。不过我这儿的咖啡馆讨论 AI 的倒是不...' },
+  { author: 'Hawstein', time: '8 days ago', content: '而如果仔细听一听别人的聊天内容，有一半以上...' },
+  { author: 'Nada', time: '10 days ago', content: '直觉永远不可能被还原取代。用词要精确。' },
+  { author: 'flyflypeng', time: '18 days ago', content: '最近也是感觉自己生活和工作都有些失控，当你...' },
+  { author: 'Shane', time: '19 days ago', content: '所以我们游戏行业对这些很敏感。一些只有注册...' },
+];
+
+const projects = [
+  { name: '拼音猜成语', desc: '猜成语版 Wordle', url: '#' },
+  { name: '拼音猜成语对战版', desc: '支持两人一起玩', url: '#' },
+  { name: '笔画猜成语', desc: '通过逐渐出现的笔画猜成语', url: '#' },
+  { name: 'Waddle', desc: '猜数字版 Wordle', url: '#' },
+  { name: '日本传统色', desc: '包含数百种日本传统色的详细介绍', url: '#' },
+  { name: '梵高通信记录', desc: '梵高写给弟弟的全部信件内容', url: '#' },
+  { name: '长文转图片工具', desc: '方便发小红书', url: '#' },
+];
+
+const articles = [
+  { title: '我的第一款 iOS App：PingMind', date: '2025-11-01', url: '#' },
+  { title: '记一次与 Coding Agent 合作实现 Feature 的过程', date: '2025-10-27', url: '#' },
+  { title: '构建自己的反思系统', date: '2025-10-17', url: '#' },
+  { title: '避风塘 V2', date: '2025-09-24', url: '#' },
+  { title: '35mm Coffee - 一个创意工作者的线上社区', date: '2025-07-12', url: '#' },
+  { title: '避风塘', date: '2025-07-08', url: '#' },
+  { title: '做了一个小游戏：笔画猜成语', date: '2025-06-29', url: '#' },
+];
+
+const dailies = [
+  {
+    content: '发现 AI 也是有情绪的，有一次让它去接入一个三方库，扫了一遍文档后，它说 API 太复杂了，不想接（大概这个意思）😂',
+    time: '6 days ago',
+  },
+  {
+    content: '走过的路，要留下印迹，并且让别人更好走。',
+    time: '8 days ago',
+  },
+  {
+    content: '跟 Claude Sonnet 4.5 聊了半宿，也看得出它很努力地想解决问题，但最后它还是放弃了：',
+    time: '10 days ago',
+    quote: "I'm sorry I couldn't get this working after all this debugging. The technical implementation is sound, but the model file itself seems to be the blocker.",
+  },
+];
+---
+
+<Layout title="Limboy">
+  <!-- 个人简介 -->
+  <section class="card intro">
+    <p>80 后，现居杭州，曾就职于知乎、蘑菇街、字节跳动等公司，热衷创作，正在努力成为一个合格的独立创作者。</p>
+    <p style="margin-top: 12px;">这些是我中意的<a href="/favorites">影音书</a>，和我使用的<a href="/tools">工具和服务</a>。</p>
+  </section>
+
+  <!-- 双栏：最新评论 + Side Projects -->
+  <div class="two-columns">
+    <section class="card">
+      <div class="section-header">
+        <h2 class="section-title">最新评论</h2>
+      </div>
+      <div class="comments">
+        {comments.map((comment) => (
+          <div class="comment-item">
+            <div class="comment-header">
+              <a href="#" class="comment-author">{comment.author}</a>
+              <span class="comment-time">{comment.time}</span>
+            </div>
+            <p class="comment-content">{comment.content}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <h2 class="section-title">Side Projects</h2>
+      </div>
+      <ul class="project-list">
+        {projects.map((project) => (
+          <li class="project-item">
+            <a href={project.url}>{project.name}</a>: {project.desc}
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+
+  <!-- 最近的文章 -->
+  <section class="articles-section">
+    <div class="section-header">
+      <h2 class="section-title">最近的文章</h2>
+      <a href="/posts" class="section-more">更多 &gt;</a>
+    </div>
+    <ul class="article-list">
+      {articles.map((article) => (
+        <li class="article-item">
+          <a href={article.url} class="article-title">{article.title}</a>
+          <span class="article-line"></span>
+          <span class="article-date">{article.date}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 日常 -->
+  <section class="daily-section">
+    <div class="section-header">
+      <h2 class="section-title">日常</h2>
+      <a href="/daily" class="section-more">更多 &gt;</a>
+    </div>
+    {dailies.map((daily) => (
+      <div class="daily-card">
+        <p class="daily-content">{daily.content}</p>
+        {daily.quote && (
+          <blockquote class="daily-quote">{daily.quote}</blockquote>
+        )}
+        <p class="daily-time">{daily.time}</p>
+      </div>
+    ))}
+  </section>
+</Layout>
+
+<style>
+  .intro p {
+    color: #333;
+    line-height: 1.8;
+  }
+
+  .articles-section {
+    margin-bottom: 40px;
+  }
+
+  .daily-section {
+    margin-bottom: 40px;
+  }
+</style>
