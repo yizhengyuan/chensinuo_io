@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// 文章数据按年份分组
+const articlesByYear = {
+  '2025': [
+    { title: '我的第一款 iOS App：PingMind', date: '2025-11-01', url: '#' },
+    { title: '记一次与 Coding Agent 合作实现 Feature 的过程', date: '2025-10-27', url: '#' },
+    { title: '构建自己的反思系统', date: '2025-10-17', url: '#' },
+    { title: '避风塘 V2', date: '2025-09-24', url: '#' },
+    { title: '35mm Coffee - 一个创意工作者的线上社区', date: '2025-07-12', url: '#' },
+    { title: '避风塘', date: '2025-07-08', url: '#' },
+    { title: '做了一个小游戏：笔画猜成语', date: '2025-06-29', url: '#' },
+    { title: 'Vibe Coding 一段时间后的感受', date: '2025-06-28', url: '#' },
+    { title: '科萨人和祖鲁人', date: '2025-06-23', url: '#' },
+    { title: 'LimTube', date: '2025-06-23', url: '#' },
+    { title: 'Email', date: '2025-06-21', url: '#' },
+    { title: '冷水澡', date: '2025-06-13', url: '#' },
+    { title: '关于 AI 辅助编程的一些实践和思考', date: '2025-06-12', url: '#' },
+    { title: '理想的文本内容创作、分发和消费系统', date: '2025-03-15', url: '#' },
+    { title: '以终为始，面向价值观生活', date: '2025-02-28', url: '#' },
+    { title: 'AI 辅助编程的崛起意味着什么？', date: '2025-02-27', url: '#' },
+  ],
+  '2024': [
+    { title: '去喀什旅行', date: '2024-12-01', url: '#' },
+  ],
+};
+---
+
+<Layout title="文章 - Limboy">
+  <div class="posts-page">
+    {Object.entries(articlesByYear).map(([year, articles]) => (
+      <section class="year-section">
+        <h2 class="year-title">{year}</h2>
+        <ul class="article-list">
+          {articles.map((article) => (
+            <li class="article-item">
+              <a href={article.url} class="article-title">{article.title}</a>
+              <span class="article-line"></span>
+              <span class="article-date">{article.date}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .posts-page {
+    padding-bottom: 60px;
+  }
+
+  .year-section {
+    margin-bottom: 40px;
+  }
+
+  .year-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ccc;
+    margin-bottom: 16px;
+  }
+
+  .article-list {
+    list-style: none;
+  }
+
+  .article-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    gap: 16px;
+  }
+
+  .article-title {
+    flex-shrink: 0;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .article-title:hover {
+    color: #4a7298;
+  }
+
+  .article-line {
+    flex-grow: 1;
+    border-bottom: 1px dashed #ddd;
+    min-width: 20px;
+  }
+
+  .article-date {
+    flex-shrink: 0;
+    color: #4a7298;
+    font-size: 0.875rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  }
+</style>

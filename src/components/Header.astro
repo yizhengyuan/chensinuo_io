@@ -9,6 +9,8 @@ const navItems = [
   { label: '影视', href: '/movies' },
   { label: '日常', href: '/daily' },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="header">
@@ -18,7 +20,12 @@ const navItems = [
     </a>
     <nav class="nav">
       {navItems.map((item) => (
-        <a href={item.href} class="nav-link">{item.label}</a>
+        <a
+          href={item.href}
+          class:list={['nav-link', { active: currentPath.startsWith(item.href) }]}
+        >
+          {item.label}
+        </a>
       ))}
     </nav>
   </div>
@@ -66,10 +73,15 @@ const navItems = [
     font-size: 0.9rem;
     text-decoration: none;
     transition: color 0.2s;
+    padding-bottom: 4px;
   }
 
   .nav-link:hover {
     color: #4a7298;
+  }
+
+  .nav-link.active {
+    border-bottom: 2px solid #333;
   }
 
   @media (max-width: 768px) {
