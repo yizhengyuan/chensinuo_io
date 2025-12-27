@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const documents = [
+  {
+    title: '尝试的艺术：如何在二十几岁时通过有效试错找到方向',
+    description: '到底"尝试"到什么程度，才有资格决定是"坚持"还是"放弃"？',
+    tag: 'Ask AI',
+    date: '2025-12-22',
+  },
+  {
+    title: '贝尔曼方程的生活应用指南',
+    description: '贝尔曼方程（Bellman Equation）的核心不仅仅是数学或计算机科学中的动态规划（Dynamic Programming），它本质上是一种**关于"如何在不同时间点权衡利益"的哲学**。',
+    tag: 'Ask AI',
+    date: '2025-12-07',
+  },
+  {
+    title: '怎样解题（How to Solve It）',
+    description: '乔治·波利亚（G. Polya）的著作《怎样解题》（*How to Solve It*）是一部关于数学方法和启发法（Heuristic）的经典指南。本书的核心不仅在于教授具体的数学知识，更在于传授一种解决问题的思维方式和"发现的艺术"。',
+    tag: 'Book',
+    date: '2025-12-05',
+  },
+  {
+    title: '算法时代的盲区：重塑"低效"的勇气',
+    description: '在二十一世纪的第三个十年，人类社会正处于一种前所未有的悖论之中：我们拥有了历史上最强大的效率工具——人工智能与算法优化系统，但我们却陷入了深刻的时间焦虑与存在主义危机。本报告旨在深入探讨这一现象，回应一个日益紧迫的社会学命题："在追求\'最优解\'（Optimal Solution）的时代，我们是否正在丧失\'允许事情变得低效\'的勇气？"',
+    tag: 'Research',
+    date: '2025-11-27',
+  },
+];
+---
+
+<Layout title="文档 - Limboy">
+  <div class="docs-page">
+    {documents.map((doc) => (
+      <article class="doc-card">
+        <h2 class="doc-title">
+          <a href="#">{doc.title}</a>
+        </h2>
+        <p class="doc-description">{doc.description}</p>
+        <div class="doc-meta">
+          <span class="doc-tag">{doc.tag}</span>
+          <span class="doc-date">{doc.date}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .docs-page {
+    padding-bottom: 60px;
+  }
+
+  .doc-card {
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .doc-card:hover {
+    border-color: #ddd;
+  }
+
+  .doc-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .doc-title a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .doc-title a:hover {
+    color: #4a7298;
+  }
+
+  .doc-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .doc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doc-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    font-size: 0.8rem;
+    color: #666;
+    background: #fff;
+  }
+
+  .doc-date {
+    color: #999;
+    font-size: 0.85rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  }
+</style>
