@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const books = [
+  {
+    source: {
+      title: 'The 5 Second Rule: Transform Your Life, Work, and Confi...',
+      preview: "Throughout your life, you've had parents, coaches, teac...",
+      site: 'www.goodreads.com',
+      image: 'https://via.placeholder.com/80/8B4513/fff?text=5',
+    },
+    content: [
+      '《5秒法则》（The 5 Second Rule）是由梅尔·罗宾斯（Mel Robbins）撰写的一本关于个人转型与行为改变的畅销书。本书的核心理念源于作者在人生低谷期——面临婚姻危机、财务崩溃和职业停滞时的一次顿悟。罗宾斯发现，改变人生并不需要巨大的飞跃，而是在于每一个微小的、五秒钟的决定。',
+      '作者之后又出了一本畅销书：The Let Them Theory，这本书可以看作是处理与自己的关系，那本书是处理与别人的关系。',
+      '法则的操作非常简单：当你有一个达成目标的直觉或冲动时，你必须在五秒钟内倒数 5-4-3-2-1 并立即采取身体行动，否则你的大脑会通过犹豫、恐惧或过度思考来阻止你。这不仅仅是一个口号，而是一种元认知（meta cognition）工具，能够打破大脑的习惯回路，激活负责决策和专注的前额叶皮层。',
+      '勇气不是只有伟人拥有的特质，而是每个人都能通过推自己一把（push yourself）来获得的日常能力，5秒法则是填补"知"与"行"之间鸿沟的有效桥梁。',
+    ],
+    images: [
+      '/images/books/picture1.jpeg',
+      '/images/books/picture2.jpeg',
+      '/images/books/picture3.jpeg',
+      '/images/books/picture4.jpeg',
+      '/images/books/picture5.jpeg',
+      '/images/books/picture6.jpeg',
+      '/images/books/picture7.jpeg',
+      '/images/books/picture8.jpeg',
+      '/images/books/picture9.jpeg',
+    ],
+    time: '13 days ago',
+  },
+];
+---
+
+<Layout title="读书 - Limboy">
+  <div class="books-page">
+    {books.map((book) => (
+      <article class="book-card">
+        <!-- 书籍引用 -->
+        <div class="source-block">
+          <div class="source-info">
+            <p class="source-title">{book.source.title}</p>
+            <p class="source-preview">{book.source.preview}</p>
+            <p class="source-site">{book.source.site}</p>
+          </div>
+          <div class="source-image">
+            <img src={book.source.image} alt="" />
+          </div>
+        </div>
+
+        <!-- 读书笔记 -->
+        <div class="book-content">
+          {book.content.map((para) => (
+            <p>{para}</p>
+          ))}
+        </div>
+
+        <!-- 图片画廊 -->
+        {book.images && book.images.length > 0 && (
+          <div class="image-gallery">
+            <div class="gallery-scroll">
+              {book.images.map((img, index) => (
+                <img src={img} alt={`图片 ${index + 1}`} class="gallery-image" />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- 底部 -->
+        <div class="book-footer">
+          <div class="book-actions">
+            <button class="action-btn">♡</button>
+            <button class="action-btn">💬</button>
+          </div>
+          <span class="book-time">{book.time}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .books-page {
+    padding-bottom: 60px;
+  }
+
+  .book-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* 书籍引用块 */
+  .source-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .source-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .source-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .source-preview {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .source-site {
+    color: #999;
+    font-size: 0.85rem;
+  }
+
+  .source-image {
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+
+  .source-image img {
+    width: 70px;
+    height: 90px;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  /* 读书笔记内容 */
+  .book-content {
+    margin-bottom: 20px;
+  }
+
+  .book-content p {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .book-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 图片画廊 */
+  .image-gallery {
+    margin-bottom: 20px;
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 24px;
+  }
+
+  .gallery-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    padding-right: 24px;
+  }
+
+  .gallery-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .gallery-scroll::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 3px;
+  }
+
+  .gallery-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
+
+  .gallery-image {
+    flex-shrink: 0;
+    height: 280px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  /* 底部 */
+  .book-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+  }
+
+  .book-actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  .action-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .action-btn:hover {
+    opacity: 1;
+  }
+
+  .book-time {
+    color: #4a7298;
+    font-size: 0.85rem;
+  }
+</style>
