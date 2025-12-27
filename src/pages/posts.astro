@@ -29,7 +29,7 @@ const articlesByYear = {
 
 <Layout title="文章 - Limboy">
   <div class="posts-page">
-    {Object.entries(articlesByYear).map(([year, articles]) => (
+    {Object.entries(articlesByYear).sort((a, b) => Number(b[0]) - Number(a[0])).map(([year, articles]) => (
       <section class="year-section">
         <h2 class="year-title">{year}</h2>
         <ul class="article-list">
