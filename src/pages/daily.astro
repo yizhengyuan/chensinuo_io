@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const dailies = [
+  {
+    content: '发现 AI 也是有情绪的，有一次让它去接入一个三方库，扫了一遍文档后，它说 API 太复杂了，不想接（大概这个意思）😂',
+    quote: null,
+    time: '6 days ago',
+  },
+  {
+    content: '走过的路，要留下印迹，并且让别人更好走。',
+    quote: null,
+    time: '8 days ago',
+  },
+  {
+    content: '跟 Claude Sonnet 4.5 聊了半宿，也看得出它很努力地想解决问题，但最后它还是放弃了：',
+    quote: "I'm sorry I couldn't get this working after all this debugging. The technical implementation is sound, but the model file itself seems to be the blocker.",
+    afterQuote: '然后，新建一个 Session，让 Gemini 3 Flash 来解决同样的问题，结果人家自己 Google 一阵后，告诉我，fix 了，根本不是 model file 的问题，怀着半信半疑的心态，试了下，真的好了。有点东西！',
+    time: '9 days ago',
+  },
+];
+---
+
+<Layout title="日常 - Limboy">
+  <div class="daily-page">
+    {dailies.map((daily) => (
+      <article class="daily-card">
+        <div class="daily-content">
+          <p>{daily.content}</p>
+          {daily.quote && (
+            <blockquote class="daily-quote">{daily.quote}</blockquote>
+          )}
+          {daily.afterQuote && (
+            <p>{daily.afterQuote}</p>
+          )}
+        </div>
+        <div class="daily-footer">
+          <div class="daily-actions">
+            <button class="action-btn">♡</button>
+            <button class="action-btn">💬</button>
+          </div>
+          <span class="daily-time">{daily.time}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .daily-page {
+    padding-bottom: 60px;
+  }
+
+  .daily-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .daily-content {
+    margin-bottom: 16px;
+  }
+
+  .daily-content p {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .daily-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .daily-quote {
+    border-left: 3px solid #ddd;
+    padding-left: 16px;
+    margin: 16px 0;
+    color: #666;
+    line-height: 1.8;
+  }
+
+  .daily-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+  }
+
+  .daily-actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  .action-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .action-btn:hover {
+    opacity: 1;
+  }
+
+  .daily-time {
+    color: #4a7298;
+    font-size: 0.85rem;
+  }
+</style>
